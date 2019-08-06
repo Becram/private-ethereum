@@ -60,7 +60,27 @@ services:
        chainnet:
          ipv4_address: 172.25.0.111
 
-
+  miner:
+     hostname: miner
+     environment:
+       - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 #derived from the private key which is passed in the args
+       - address2=0xBC32587EA152Cae813e60f1797A8179FD1bfe3Ac #derived from the private key which is passed in the args
+       - bootnodeId=f753d4bcb53111bd501d272a294f96ca672e0cd015d5fd16d55ce00d4e1d3eb364e9b39d6a343883da9881823960d6191aeb986a489111a1963eca4ecc6ea3d8 #derived from the nodekeyhex of the bootnode
+       - bootnodeIp=172.25.0.101
+     build:
+       context: ./miner
+       args:
+         privatekey1: 18a3cfbc9ea20b9a910e70c6c0608e6c6cccc7690cc0bd301a65051579ae7dfe
+         privatekey2: 33db5141fdb3b6dd96c3edc55f99768498cabfd57f0cc73e36c058d7a529a811
+         password1: bikram
+         password2: adars
+     container_name: miner
+     volumes:
+      - eth-data-3:/root/.ethash
+     tty: true
+     networks:
+       chainnet:
+         ipv4_address: 172.25.0.112
   geth-explorer:
     hostname: geth-explorer
     depends_on:
@@ -72,7 +92,7 @@ services:
     container_name: geth-explorer
     networks:
       chainnet:
-        ipv4_address: 172.25.0.111
+        ipv4_address: 172.25.0.113
 
 networks:
   chainnet:
@@ -84,4 +104,5 @@ networks:
 volumes:
   eth-data-1:
   eth-data-2:
+  eth-data-3:
 
