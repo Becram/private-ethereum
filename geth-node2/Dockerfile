@@ -28,7 +28,7 @@ RUN geth account import --password ~/.accountpassword2  ~/.privatekey2
 #RUN geth --unlock 6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 --password ~/.accountpassword1
 #RUN geth --unlock BC32587EA152Cae813e60f1797A8179FD1bfe3Ac --password ~/.accountpassword2
 
-CMD exec geth --nousb --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" --port 30311 --networkid "15" --verbosity=4 --rpc --rpcport "8080" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --rpcapi "eth,net,web3,miner,debug,personal,rpc"
-EXPOSE 8080
+CMD exec geth --nousb --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" --port 30312 --networkid "15" --verbosity=4 --rpc --rpcport "8081" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --rpcapi "eth,net,web3,miner,debug,personal,rpc"
+EXPOSE 8081
 EXPOSE 30303
 #CMD ["/usr/bin/bash"]

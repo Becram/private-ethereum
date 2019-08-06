@@ -1,24 +1,64 @@
 version: "2.0"
 services:
+  geth-bootnode:
+    hostname: geth-bootnode
+#    environment:
+#      - nodekey #Needs to be fix, so that the miners know the resulting enode id
+    build:
+      context: ./bootnode
+    ports:
+      - 30301:30301/udp
+    tty: true
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.101 # The miners need to know the IP address later on
+
   geth-node1:
      hostname: geth-node1
      environment:
-       - address=0x3590aca93338b0721966a8d0c96ebf2c4c87c544 #derived from the private key which is passed in the args
-       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
+       - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 #derived from the private key which is passed in the args
+       - address2=0xBC32587EA152Cae813e60f1797A8179FD1bfe3Ac #derived from the private key which is passed in the args
+       - bootnodeId=f753d4bcb53111bd501d272a294f96ca672e0cd015d5fd16d55ce00d4e1d3eb364e9b39d6a343883da9881823960d6191aeb986a489111a1963eca4ecc6ea3d8 #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
      build:
        context: ./geth-node1
        args:
-         privatekey: bc5b578e0dcb2dbf98dd6e5fe62cb5a28b84a55e15fc112d4ca88e1f62bd7c35
-         password: word
+         privatekey1: 18a3cfbc9ea20b9a910e70c6c0608e6c6cccc7690cc0bd301a65051579ae7dfe
+         privatekey2: 33db5141fdb3b6dd96c3edc55f99768498cabfd57f0cc73e36c058d7a529a811
+         password1: bikram
+         password2: adars
      container_name: geth-node1
      ports:
-       - 8545:8545
+       - 8545:8080
      volumes:
       - eth-data-1:/root/.ethash
+     tty: true
      networks:
        chainnet:
          ipv4_address: 172.25.0.110
+  geth-node2:
+     hostname: geth-node2
+     environment:
+       - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 #derived from the private key which is passed in the args
+       - address2=0xBC32587EA152Cae813e60f1797A8179FD1bfe3Ac #derived from the private key which is passed in the args
+       - bootnodeId=f753d4bcb53111bd501d272a294f96ca672e0cd015d5fd16d55ce00d4e1d3eb364e9b39d6a343883da9881823960d6191aeb986a489111a1963eca4ecc6ea3d8 #derived from the nodekeyhex of the bootnode
+       - bootnodeIp=172.25.0.101
+     build:
+       context: ./geth-node2
+       args:
+         privatekey1: 18a3cfbc9ea20b9a910e70c6c0608e6c6cccc7690cc0bd301a65051579ae7dfe
+         privatekey2: 33db5141fdb3b6dd96c3edc55f99768498cabfd57f0cc73e36c058d7a529a811
+         password1: bikram
+         password2: adars
+     container_name: geth-node2
+     ports:
+       - 8546:8081
+     volumes:
+      - eth-data-2:/root/.ethash
+     tty: true
+     networks:
+       chainnet:
+         ipv4_address: 172.25.0.111
 
 
   geth-explorer:
@@ -26,7 +66,7 @@ services:
     depends_on:
       - geth-node1
     ports:
-      - 8787:8080
+      - 8989:8080
     build:
       context: ./geth-explorer
     container_name: geth-explorer
@@ -43,4 +83,5 @@ networks:
 
 volumes:
   eth-data-1:
+  eth-data-2:
 
