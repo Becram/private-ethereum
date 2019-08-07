@@ -2,8 +2,8 @@ version: "2.0"
 services:
   geth-bootnode:
     hostname: geth-bootnode
-#    environment:
-#      - nodekey #Needs to be fix, so that the miners know the resulting enode id
+    environment:
+      - nodekeyhex=08f0e1dee5c1b4645f3331a566009e41a4514b6cd28656d63d0449ecf812812b  #Needs to be fix, so that the miners know the resulting enode id
     build:
       context: ./bootnode
     container_name: geth-bootnode
@@ -19,7 +19,7 @@ services:
      environment:
        - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 #derived from the private key which is passed in the args
        - address2=0xBC32587EA152Cae813e60f1797A8179FD1bfe3Ac #derived from the private key which is passed in the args
-       - bootnodeId=f753d4bcb53111bd501d272a294f96ca672e0cd015d5fd16d55ce00d4e1d3eb364e9b39d6a343883da9881823960d6191aeb986a489111a1963eca4ecc6ea3d8 #derived from the nodekeyhex of the bootnode
+       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
        - TZ=Asia/Kathmandu
      build:
@@ -43,7 +43,7 @@ services:
      environment:
        - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 #derived from the private key which is passed in the args
        - address2=0xBC32587EA152Cae813e60f1797A8179FD1bfe3Ac #derived from the private key which is passed in the args
-       - bootnodeId=f753d4bcb53111bd501d272a294f96ca672e0cd015d5fd16d55ce00d4e1d3eb364e9b39d6a343883da9881823960d6191aeb986a489111a1963eca4ecc6ea3d8 #derived from the nodekeyhex of the bootnode
+       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
        - TZ=Asia/Kathmandu
      build:
@@ -55,7 +55,7 @@ services:
          password2: adars
      container_name: geth-node2
      ports:
-       - 8546:8081
+       - 8546:8545
      volumes:
       - eth-data-2:/root/.ethash
      tty: true
@@ -68,7 +68,7 @@ services:
      environment:
        - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 
        - address3=0x15B78a3927dFEee5Fd5f82E61EB58521fE9D61f4 #derived from the private key which is passed in the args
-       - bootnodeId=f753d4bcb53111bd501d272a294f96ca672e0cd015d5fd16d55ce00d4e1d3eb364e9b39d6a343883da9881823960d6191aeb986a489111a1963eca4ecc6ea3d8 #derived from the nodekeyhex of the bootnode
+       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
        - TZ=Asia/Kathmandu
      build:

@@ -30,8 +30,8 @@ RUN geth  --nousb account import --password ~/.accountpassword3  ~/.privatekey3
 # RUN geth --unlock BC32587EA152Cae813e60f1797A8179FD1bfe3Ac --password ~/.accountpassword2
 
 CMD exec geth --nousb --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" \
-    --networkid "15" --verbosity=4 --syncmode full --mine \
-     --gasprice "0" --etherbase $address3  --unlock $address3 --password ~/.accountpassword3
+    --networkid "15" --syncmode full --mine  --nodiscover\
+     --gasprice "0" --etherbase $address1  --unlock $address1 --password ~/.accountpassword1
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 EXPOSE 30303
 #CMD ["/usr/bin/bash"]

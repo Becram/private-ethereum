@@ -14,11 +14,12 @@ RUN apt-get update \
 
 ENV nodekeyhex=""
 #RUN bootnode --genkey=boot.key
-COPY ./boot.key .
-CMD exec bootnode --nodekey=boot.key -verbosity 9 -addr :30310
+# COPY ./boot.key .
+CMD exec bootnode -nodekeyhex $nodekeyhex
+# CMD exec bootnode --nodekey=boot.key 
 #CMD exec bootnode -nodekeyhex $nodekeyhex
 #CMD exec bootnode -nodekeyhex $nodekeyhex 
 #CMD ["/usr/bin/bash"]
-EXPOSE 30310/udp
+
 EXPOSE 30301/udp
 EXPOSE 30303/udp
