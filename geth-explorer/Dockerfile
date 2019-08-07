@@ -9,6 +9,8 @@ WORKDIR "/opt/blockchain-explorer"
 RUN git checkout c6e12f1
 RUN npm install
 
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 CMD npm run start
 
 EXPOSE 8080
