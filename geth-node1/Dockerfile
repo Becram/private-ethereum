@@ -29,7 +29,7 @@ RUN geth --nousb account import --password ~/.accountpassword2  ~/.privatekey2
 # RUN geth --unlock BC32587EA152Cae813e60f1797A8179FD1bfe3Ac --password ~/.accountpassword2
 
 CMD exec geth --nousb --bootnodes "enode://$bootnodeId@$bootnodeIp:30301"  \
-    --rpc  --rpcaddr "0.0.0.0"   --networkid "15" --nodiscover \
+    --rpc  --rpcaddr "0.0.0.0"   --networkid "15" --verbosity 5  \
      --rpccorsdomain "*" --rpcapi "eth,net,web3,miner,debug,personal,rpc" --syncmode full 
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

@@ -13,10 +13,12 @@ RUN apt-get update \
      && apt-get install -y ethereum
 
 ENV nodekeyhex=""
-#RUN bootnode --genkey=boot.key
+RUN bootnode --genkey=boot.key
+
+
 # COPY ./boot.key .
-CMD exec bootnode -nodekeyhex $nodekeyhex
-# CMD exec bootnode --nodekey=boot.key 
+#CMD exec bootnode -nodekeyhex $nodekeyhex
+CMD exec bootnode --nodekey=boot.key 
 #CMD exec bootnode -nodekeyhex $nodekeyhex
 #CMD exec bootnode -nodekeyhex $nodekeyhex 
 #CMD ["/usr/bin/bash"]

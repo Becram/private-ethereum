@@ -2,8 +2,8 @@ version: "2.0"
 services:
   geth-bootnode:
     hostname: geth-bootnode
-    environment:
-      - nodekeyhex=08f0e1dee5c1b4645f3331a566009e41a4514b6cd28656d63d0449ecf812812b  #Needs to be fix, so that the miners know the resulting enode id
+    # environment:
+    #   - nodekeyhex=08f0e1dee5c1b4645f3331a566009e41a4514b6cd28656d63d0449ecf812812b  #Needs to be fix, so that the miners know the resulting enode id
     build:
       context: ./bootnode
     container_name: geth-bootnode
@@ -19,7 +19,7 @@ services:
      environment:
        - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 #derived from the private key which is passed in the args
        - address2=0xBC32587EA152Cae813e60f1797A8179FD1bfe3Ac #derived from the private key which is passed in the args
-       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
+       - bootnodeId=0908ed3cb5a453ba73369893b97da795d515b5a21f2f02ce5c6d923bf52d8b450c1f2d35b84140cf21c884b1f92fb120bf8415693f7673a46eb9a5932828cd89 #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
        - TZ=Asia/Kathmandu
      build:
@@ -43,7 +43,7 @@ services:
      environment:
        - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 #derived from the private key which is passed in the args
        - address2=0xBC32587EA152Cae813e60f1797A8179FD1bfe3Ac #derived from the private key which is passed in the args
-       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
+       - bootnodeId=0908ed3cb5a453ba73369893b97da795d515b5a21f2f02ce5c6d923bf52d8b450c1f2d35b84140cf21c884b1f92fb120bf8415693f7673a46eb9a5932828cd89 #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
        - TZ=Asia/Kathmandu
      build:
@@ -68,7 +68,7 @@ services:
      environment:
        - address1=0x6EA0f36b4E72C8a3466C43Fd887da9Bd2D950bE3 
        - address3=0x15B78a3927dFEee5Fd5f82E61EB58521fE9D61f4 #derived from the private key which is passed in the args
-       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
+       - bootnodeId=0908ed3cb5a453ba73369893b97da795d515b5a21f2f02ce5c6d923bf52d8b450c1f2d35b84140cf21c884b1f92fb120bf8415693f7673a46eb9a5932828cd89 #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
        - TZ=Asia/Kathmandu
      build:

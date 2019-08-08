@@ -4,6 +4,7 @@ RUN apt-get update \
      && apt-get install -y wget software-properties-common \
      && rm -rf /var/lib/apt/lists/*
 
+
 WORKDIR "/root"
 
 RUN add-apt-repository -y ppa:ethereum/ethereum
@@ -30,8 +31,10 @@ RUN geth  --nousb account import --password ~/.accountpassword3  ~/.privatekey3
 # RUN geth --unlock BC32587EA152Cae813e60f1797A8179FD1bfe3Ac --password ~/.accountpassword2
 
 CMD exec geth --nousb --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" \
-    --networkid "15" --syncmode full --mine  --nodiscover\
-     --gasprice "0" --etherbase $address1  --unlock $address1 --password ~/.accountpassword1
+    --networkid "15" --syncmode full --mine --verbosity 5  \
+    --gasprice "0" --etherbase $address1  --unlock $address1 --password ~/.accountpassword1
+
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 EXPOSE 30303
 #CMD ["/usr/bin/bash"]
