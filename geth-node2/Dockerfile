@@ -30,8 +30,8 @@ RUN geth --nousb account import --password ~/.accountpassword2  ~/.privatekey2
 # RUN geth --unlock BC32587EA152Cae813e60f1797A8179FD1bfe3Ac --password ~/.accountpassword2
 
 CMD exec geth --nousb --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" \
-     --networkid "15" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*"  --verbosity 5  \
-     --rpcapi "eth,net,web3,miner,debug,personal,rpc" --syncmode full 
+     --networkid "6660001" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*"  \
+     --rpcapi "eth,web3,net,admin,debug,db" --syncmode="full" 
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 EXPOSE 30303

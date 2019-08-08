@@ -31,7 +31,10 @@ services:
          password2: adars
      container_name: geth-node1
      ports:
-       - 8545:8080
+       - 8545:8545
+     depends_on:
+      - geth-bootnode
+      - geth-node3
      volumes:
       - eth-data-1:/root/.ethash
      tty: true
@@ -56,6 +59,9 @@ services:
      container_name: geth-node2
      ports:
        - 8546:8545
+     depends_on:
+      - geth-bootnode
+      - geth-node3
      volumes:
       - eth-data-2:/root/.ethash
      tty: true
@@ -79,6 +85,8 @@ services:
          password1: bikram
          password3: ashish
      container_name: geth-node3
+     depends_on:
+      - geth-bootnode
      volumes:
       - eth-data-3:/root/.ethash
      tty: true
